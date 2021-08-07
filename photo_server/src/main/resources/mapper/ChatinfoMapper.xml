@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmy.demophoto.mapper.ChatinfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xmy.demophoto.entity.Chatinfo">
+        <id column="chatid" property="chatid" />
+        <result column="sendid" property="sendid" />
+        <result column="getterid" property="getterid" />
+        <result column="content" property="content" />
+        <result column="info" property="info" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        chatid, sendid, getterid, content, info
+    </sql>
+
+</mapper>

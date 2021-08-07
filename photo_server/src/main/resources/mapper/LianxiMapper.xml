@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmy.demophoto.mapper.LianxiMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xmy.demophoto.entity.Lianxi">
+        <id column="lianxiid" property="lianxiid" />
+        <result column="myid" property="myid" />
+        <result column="otherid" property="otherid" />
+        <result column="othername" property="othername" />
+        <result column="myname" property="myname" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        lianxiid, myid, otherid, othername, myname
+    </sql>
+
+</mapper>

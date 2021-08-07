@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="ThemeBucket">
+    <link rel="icon" type="image/png"  href="../images/logo1.png">
+
+  <title>订单列表</title>
+
+  <!--订单列表-->
+  <link href="js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+  <link href="js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+  <link rel="stylesheet" href="js/data-tables/DT_bootstrap.css" />
+
+    <div th:include="common ::commonheader"></div>
+</head>
+
+
+<body class="sticky-header">
+
+
+<section>
+    <div th:replace="common :: leftmenu"></div>
+
+    <!-- main content start-->
+    <div class="main-content" >
+
+        <!-- thymeleaf头菜单模板引用-->
+        <div th:replace="common :: headermenu"></div>
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                订单列表
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a th:href="@{/main.html}">主页</a>
+                </li>
+                <li>
+                    <a href="#">订单管理</a>
+                </li>
+                <li class="active"> 订单列表 </li>
+            </ul>
+        </div>
+        <!-- page heading end-->
+
+        <!--body wrapper start-->
+        <div class="wrapper">
+        <div class="row">
+        <div class="col-sm-12">
+        <section class="panel">
+        <header class="panel-heading">
+            订单列表
+            <span class="tools pull-right">
+                <a href="javascript:;" class="fa fa-chevron-down"></a>
+                <a href="javascript:;" class="fa fa-times"></a>
+             </span>
+        </header>
+
+        <div class="panel-body">
+            <!--添加订单按钮-->
+<!--            <div class="btn-group">-->
+<!--                <a href="#addModal" data-toggle="modal" class="btn btn-primary">-->
+<!--                    添加订单<i class="fa fa-plus"></i>-->
+<!--                </a>-->
+<!--            </div>-->
+        <div class="adv-table">
+        <table class="display table table-bordered table-striped" id="dynamic-table">
+        <thead>
+        <tr>
+            <th >#</th>
+            <th>订单号</th>
+            <th>用户</th>
+            <th>时间</th>
+            <th>作品ID</th>
+            <th>拍摄价钱</th>
+            <th>订单状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--数据-->
+        <tr class="gradeX" th:each="order,stat:${orders}">
+            <td th:text="${stat.count}" class="center">#</td>
+            <td th:text="${order.ordernumber}" class="center"></td>
+            <td th:text="${order.info}" class="center"></td>
+            <td th:text="${order.creattime}" class="center"></td>
+            <td th:text="${order.goodsid}" class="center"></td>
+            <td th:text="${order.total}" class="center"></td>
+            <td th:text="${order.ordertype}" class="center"></td>
+            <td class="center">
+            <!-- th:href="@{/order/getOrder/{id}(id=${order.id})}"-->
+<!--                <a th:onclick="|get(${order.id})|" data-toggle="modal" data-target="#updateModal" class="btn btn-default">修改</a>-->
+                <a th:href="@{/order/toUpdate/{id}(id=${order.id})}" class="btn btn-default">修改</a>
+                <a th:href="@{/order/delete/{id}(id=${order.id})}" class="btn btn-danger" >删除</a>
+
+
+                <!--模态框添加按钮-->
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="addModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                <h4 class="modal-title">添加订单</h4>
+                            </div>
+
+                            <div class="modal-body">
+
+                                <form action="#" th:action="@{/order/insert}" method="post">
+                                    <div class="form-row">
+                                        <div class="col-md-13">
+                                            <label>摄影师ID</label>
+                                            <input type="text" name="pid" class="form-control" required>
+                                        </div>
+                                        </br>
+
+                                        <div class="col-md-13">
+                                            <label>&nbsp&nbsp&nbsp&nbsp用户ID</label>
+                                            <input type="text" name="uid" class="form-control" required>
+                                        </div>
+                                        </br>
+
+                                        <div class="col-md-13">
+                                            <label>预约地点</label>
+                                            <input type="text" name="place" class="form-control" required>
+                                        </div>
+                                        <br>
+
+<!--                                        <div class="col-md-13">-->
+<!--                                            <label>订单时间</label>-->
+<!--                                            <input type="text" name="addtime" class="form-control" required>-->
+<!--                                        </div>-->
+<!--                                        <br>-->
+
+                                        <div class="col-md-13">
+                                            <label>预约时间</label>
+                                            <input type="text" name="ordertime" class="form-control" required>
+                                        </div>
+                                        <br>
+
+                                        <div class="form-group col-md-13">
+                                            <label>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp备注</label>
+                                            <textarea style="resize: none" name="note" class="form-control" rows="3" ></textarea>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                        <button type="submit" class="btn btn-success" >确定</button>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+        </table>
+        </div>
+        </div>
+        </section>
+        </div>
+        </div>
+        <footer>
+            2021摄影约拍系统    作者:胥明毓
+        </footer>
+    </div>
+    </div>
+</section>
+
+<!--JS模板引用-->
+<div th:replace="common ::commonscript"></div>
+
+<!--dynamic table-->
+<script type="text/javascript" language="javascript" src="js/advanced-datatable/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="js/data-tables/DT_bootstrap.js"></script>
+<!--dynamic table initialization -->
+<script src="js/dynamic_table_init.js"></script>
+
+
+</body>
+</html>

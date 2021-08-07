@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--摄影约拍后台公共模块-->
+<head th:fragment="commonheader">
+
+    <!-- th:href动态获取-->
+    <link href="css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="css/style-responsive.css" th:href="@{/css/style-responsive.css}" rel="stylesheet">
+
+    <script src="js/html5shiv.js" th:src="@{/js/html5shiv.js}"></script>
+    <script src="js/respond.min.js" th:src="@{/js/respond.min.js}"></script>
+</head>
+
+<body>
+<!--    thymeleaf左菜单模板-->
+    <div th:fragment="leftmenu" class="left-side sticky-left-side">
+
+        <div class="logo">
+            <a th:href="@{/main.html}"><span>摄影约拍系统</span></a>
+        </div>
+
+        <div class="left-side-inner">
+
+            <div class="visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="media logged-user">
+                    <img alt="" src="images/photos/user-avatar.png" class="media-object">
+                    <div class="media-body">
+                        <h4 th:text="${Name}"></h4>
+                        <span>"欢迎你"</span>
+                    </div>
+                </div>
+
+                <h5 class="left-nav-title">个人简介</h5>
+                <ul class="nav nav-pills nav-stacked custom-nav">
+                    <li><a href="#"><i class="fa fa-cog"></i> <span>设置</span></a></li>
+                    <li><a href="#"><i class="fa fa-sign-out"></i> <span>退出</span></a></li>
+                </ul>
+            </div>
+
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <!-- th:href动态回到主页-->
+                <!--主页-->
+<!--                nav-active-->
+                <li class="menu-list"><a th:href="@{/main.html}"><i class="fa fa-home"></i> <span>主页</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a href="main.html"> 控制台</a></li>
+                    </ul>
+                </li>
+
+                <!--摄影师档案管理-->
+                <li class="menu-list"><a href=""><i class="fa fa-laptop"></i> <span>摄影师档案管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/photographer_table}"> 摄影师列表</a></li>
+                    </ul>
+                </li>
+
+
+                <!--用户档案管理-->
+                <li class="menu-list"><a href=""><i class="fa fa-book"></i> <span>用户档案管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/user_table}"> 用户列表</a></li>
+                    </ul>
+                </li>
+
+                <!--订单管理-->
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>订单管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/order_table}"> 订单列表</a></li>
+                    </ul>
+                </li>
+
+                <!--摄影作品管理-->
+                <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>摄影作品管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/works_table}"> 摄影作品列表</a></li>
+                    </ul>
+                </li>
+
+                <!--评论管理 -->
+                <li class="menu-list"><a href=""><i class="fa fa-envelope"></i> <span>评论管理</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/comment_table}"> 评论列表</a></li>
+                    </ul>
+                </li>
+
+
+                <!--数据备份与还原-->
+                <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>数据备份与还原</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/back_up}"> 备份</a></li>
+                        <li><a th:href="@{/restore}"> 还原</a></li>
+                    </ul>
+                </li>
+
+                <!--管理员设置-->
+                <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>管理员设置</span></a>
+                    <ul class="sub-menu-list">
+                        <li><a th:href="@{/admin_table}">管理员列表</a></li>
+                    </ul>
+                </li>
+
+                <li><a th:href="@{/login}"><i class="fa fa-sign-in"></i> <span>退出登录</span></a></li>
+
+            </ul>
+
+        </div>
+    </div>
+
+<!--    thymeleaf头菜单模板-->
+    <div th:fragment="headermenu" class="header-section">
+
+        <!--toggle button start-->
+        <a class="toggle-btn"><i class="fa fa-bars"></i></a>
+        <!--toggle button end-->
+
+        <!--搜索-->
+        <form class="searchform" action="http://view.jqueryfuns.com/2014/4/10/7_df25ceea231ba5f44f0fc060c943cdae/index.html" method="post">
+            <input type="text" class="form-control" name="keyword" placeholder="搜索" />
+        </form>
+
+        <!--通知栏-->
+        <div class="menu-right">
+            <ul class="notification-menu">
+                <!--登录信息-->
+                <li>
+                    <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <img src="images/photos/user-avatar.png" alt="" />
+                        [[${Name}]]
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                        <li><a th:href="@{/admin_table}"><i class="fa fa-cog"></i>  设置</a></li>
+                        <li><a th:href="@{/}"><i class="fa fa-sign-out"></i> 退出</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+<!--    thymeleafJS模板-->
+    <div th:fragment="commonscript">
+        <script th:src="@{/js/jquery-1.10.2.min.js}"></script>
+        <script th:src="@{/js/jquery-ui-1.9.2.custom.min.js}"></script>
+        <script th:src="@{/js/jquery-migrate-1.2.1.min.js}"></script>
+        <script th:src="@{/js/bootstrap.min.js}"></script>
+        <script th:src="@{/js/modernizr.min.js}"></script>
+        <script th:src="@{/js/jquery.nicescroll.js}"></script>
+        <script th:src="@{js/scripts.js}"></script>
+        <script th:src="@{js/editable-table.js}"></script>
+    </div>
+
+</body>
+</html>

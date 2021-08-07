@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmy.demophoto.mapper.OrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xmy.demophoto.entity.Order">
+        <result column="id" property="id" />
+        <result column="ordernumber" property="ordernumber" />
+        <result column="total" property="total" />
+        <result column="type" property="type" />
+        <result column="goodsid" property="goodsid" />
+        <result column="creattime" property="creattime" />
+        <result column="info" property="info" />
+        <result column="takeuserid" property="takeuserid" />
+        <result column="ordertype" property="ordertype" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, ordernumber, total, type, goodsid, creattime, info, takeuserid, ordertype
+    </sql>
+
+</mapper>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="ThemeBucket">
+    <link rel="icon" type="image/png"  href="../images/logo1.png">
+
+    <title>管理员修改</title>
+
+    <div th:include="common ::commonheader"></div>
+
+</head>
+
+<body class="sticky-header">
+
+<section>
+    <div th:replace="common :: leftmenu"></div>
+
+    <div class="main-content" >
+
+        <!-- thymeleaf头菜单模板引用-->
+        <div th:replace="common :: headermenu"></div>
+
+        <!-- page heading start-->
+        <div class="page-heading">
+            <h3>
+                管理员列表
+            </h3>
+            <ul class="breadcrumb">
+                <li>
+                    <a th:href="@{/main.html}">主页</a>
+                </li>
+                <li>
+                    <a th:href="@{/admin_table}">管理员设置</a>
+                </li>
+                <li class="active"> 管理员修改 </li>
+            </ul>
+        </div>
+
+        <section class="wrapper">
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                            管理员修改
+                        </header>
+                        <div class="panel-body">
+                            <form class="form-horizontal adminex-form" action="#" th:action="@{/admin/update}" method="post">
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">管理员ID</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" name="id" type="text" th:value="${QResult.id}" readonly>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">账号</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" name="username"  type="text" th:value="${QResult.username}" >
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">密码</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="password" class="form-control tooltips" data-trigger="hover" data-toggle="tooltip" th:value="${QResult.password}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">管理员名称</label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control" name="name" type="text" th:value="${QResult.name}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-2 col-sm-2 control-label">权限</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control" name="status">
+                                            <option th:value="${QResult.status}">[[${QResult.status}]]</option>
+                                            <option>超级管理员</option>
+                                            <option>普通管理员</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <a style="margin-left:700px" th:href="@{/admin_table}" class="btn btn-default">取消</a>
+                                <input class="btn btn-success" type="submit"/>
+                            </form>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            2021摄影约拍系统    作者:胥明毓
+        </footer>
+    </div>
+
+</section>
+
+<!--JS模板引用-->
+<div th:replace="common ::commonscript"></div>
+
+
+</body>
+</html>
