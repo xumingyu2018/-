@@ -9,7 +9,7 @@
 #### 系统展示
 
 - 前端主页
-![前端主页1](image/image.png)
+![前端主页1](image/front_image1.png)
 
 ![前端主页2](image/front_image2.png)
 
